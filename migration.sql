@@ -4,7 +4,10 @@
 */
 
 alter table completedatasetregistration 
-add lastupdated date, add lastupdatedby text,add completed boolean;
+add lastupdated date, add lastupdatedby integer,add completed boolean;
+
+alter table completedatasetregistration
+add FOREIGN KEY (lastupdatedby) REFERENCES users(userid);
 
 create or replace function migrateCompletenessTable() returns void as $$ 
 declare complete RECORD;
